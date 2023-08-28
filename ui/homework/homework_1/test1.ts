@@ -4,7 +4,10 @@
 */
 
 type Person = {
+  name: string;
+  age: number | string;
   occupation?: string;
+  isSuperHero?: true;
 };
 
 const users: Person[] = [
