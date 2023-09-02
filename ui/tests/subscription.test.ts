@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { DataLayer } from '@Utils/dataLayer';
+import { faker } from '@faker-js/faker';
 
 test.describe('check subscription event in Datalayer', () => {
     test.beforeEach(async ({ page, baseURL }) => {
@@ -20,9 +21,8 @@ test.describe('check subscription event in Datalayer', () => {
             eventAction: 'Newsletter Subscription',
             eventLabel: 'Success',
         };
-
         const emailInput = page.locator('//footer//input');
-        await emailInput.fill('test@mail.ru');
+        await emailInput.fill(faker.internet.email());
 
         const signUpButton = page.locator('//footer//button[contains(., "Sign Up" )]');
         await signUpButton.click();
