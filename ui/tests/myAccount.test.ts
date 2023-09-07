@@ -11,8 +11,8 @@ test.describe('create account and change info', () => {
     }) => {
         await homePage.open();
 
-        await homePage.topStrip.accountClick();
-        await homePage.topStrip.createAccount();
+        await homePage.header.accountClick();
+        await homePage.myAccount.createAccount();
 
         await homePage.registration.registration(
             faker.internet.email(),
@@ -37,7 +37,8 @@ test.describe('create account and change info', () => {
             expect(event).toStrictEqual(expectedEvent);
         }).toPass();
 
-        await homePage.topStrip.myAccountClick();
+        await homePage.header.accountClick();
+        await homePage.myAccount.myAccountClick();
 
         await test.step('check url', () => {
             const url = page.url();
