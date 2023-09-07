@@ -3,12 +3,7 @@ import { test, expect } from '@Test';
 import { faker } from '@faker-js/faker';
 
 test.describe('check subscription event in Datalayer', () => {
-    test('event should fire after click sign up button', async ({
-        page,
-        baseURL,
-        homePage,
-        dataLayer,
-    }) => {
+    test('event should fire after click sign up button', async ({ homePage, dataLayer }) => {
         await homePage.open();
 
         const expectedEvent = {
