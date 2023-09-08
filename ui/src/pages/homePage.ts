@@ -15,10 +15,10 @@ export class HomePage extends Container {
     };
 
     public FeaturedIn = new FeaturedIn(this.LOCATORS.featuredIn, this.page);
-    public myAccount = new MyAccount(this.LOCATORS.myAccount, this.page);
-    public registration = new Registration(this.LOCATORS.registration, this.page);
-    public header = new Header(this.LOCATORS.header, this.page);
-    public subscribe = new Subscribe(this.LOCATORS.subscribe, this.page);
+    public MyAccount = new MyAccount(this.LOCATORS.myAccount, this.page);
+    public Registration = new Registration(this.LOCATORS.registration, this.page);
+    public Header = new Header(this.LOCATORS.header, this.page);
+    public Subscribe = new Subscribe(this.LOCATORS.subscribe, this.page);
 
     public async open(): Promise<void> {
         await this.page.goto('/', { waitUntil: 'domcontentloaded' });

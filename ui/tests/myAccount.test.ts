@@ -11,10 +11,10 @@ test.describe('create account and change info', () => {
     }) => {
         await homePage.open();
 
-        await homePage.header.accountClick();
-        await homePage.myAccount.createAccount();
+        await homePage.Header.accountClick();
+        await homePage.MyAccount.createAccount();
 
-        await homePage.registration.registration(
+        await homePage.Registration.registration(
             faker.internet.email(),
             faker.person.firstName(),
             faker.person.lastName(),
@@ -37,8 +37,8 @@ test.describe('create account and change info', () => {
             expect(event).toStrictEqual(expectedEvent);
         }).toPass();
 
-        await homePage.header.accountClick();
-        await homePage.myAccount.myAccountClick();
+        await homePage.Header.accountClick();
+        await homePage.MyAccount.myAccountClick();
 
         await test.step('check url', () => {
             const url = page.url();

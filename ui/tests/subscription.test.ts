@@ -13,8 +13,8 @@ test.describe('check subscription event in Datalayer', () => {
             eventLabel: 'Success',
         };
 
-        await homePage.subscribe.insertEmail(faker.internet.email());
-        await homePage.subscribe.singUp();
+        await homePage.Subscribe.insertEmail(faker.internet.email());
+        await homePage.Subscribe.singUp();
 
         const [event] = await dataLayer.waitForDataLayer({
             event: 'GeneralInteraction',
