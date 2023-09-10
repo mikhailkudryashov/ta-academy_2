@@ -1,5 +1,4 @@
 import { test, expect } from '@Test';
-import { CategoryPage } from '@Pages/categoryPage';
 
 test.describe('check product in wishlist', () => {
     test('product in wishlist should be the same as picked', async ({
@@ -38,10 +37,7 @@ test.describe('check product in wishlist', () => {
 
         await categoryPage.Header.wishlistOpen();
 
-        const [pickedItem] = await categoryPage.Wishlist.getPickedProducts();
-        console.log(pickedItem);
-        const pickedItemId = await categoryPage.Wishlist.getProductId(pickedItem);
-
+        const pickedItemId = await categoryPage.Wishlist.getFirstProductId();
         expect(pickedItemId).toBe(productId);
     });
 });

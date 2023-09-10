@@ -6,10 +6,12 @@ import { Header } from '@Components/header';
 import { Subscribe } from '@Components/subscribe';
 
 export class HomePage extends Container {
-    protected LOCATORS = {
+    private LOCATORS = {
         featuredIn: this.page.locator('//section[contains(., "As featured in.")]'),
-        myAccount: this.page.locator('//header[@id="page-header"]/div[2]/div[2]/div/div[2]/div[7]'),
-        registration: this.page.locator('//form[@id="form-popup-register"]/../..'),
+        myAccount: this.page.locator(
+            '//div[contains(@class, "myAccountAndOrders__tooltipContainer")]'
+        ),
+        registration: this.page.locator('//div[contains(@class, "newRegisterPopup__wrap")]'),
         header: this.page.locator('//header[@id="page-header"]'),
         subscribe: this.page.locator('//footer/div[1]'),
     };

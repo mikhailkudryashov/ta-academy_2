@@ -2,7 +2,7 @@ import { Component } from '@Core/component';
 import type { Locator } from '@playwright/test';
 
 export class Subscribe extends Component {
-    protected LOCATORS = {
+    private LOCATORS = {
         email: this.locator.locator('//input[@name="email"]'),
         singUp: this.locator.locator('//button[contains(., "Sign Up" )]'),
     };

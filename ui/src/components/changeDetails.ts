@@ -1,9 +1,7 @@
 import { Component } from '@Core/component';
-import type { Locator } from '@playwright/test';
-import { faker } from '@faker-js/faker';
 
 export class ChangeDetails extends Component {
-    protected LOCATORS = {
+    private LOCATORS = {
         firstNameInput: this.locator.locator('//input[@placeholder="First Name"]'),
         lastNameInput: this.locator.locator('//input[@placeholder="Last Name"]'),
         saveButton: this.locator.locator('//button[contains(.,"Save")]'),

@@ -1,8 +1,7 @@
 import { Component } from '@Core/component';
-import type { Locator } from '@playwright/test';
 
 export class Header extends Component {
-    protected LOCATORS = {
+    private LOCATORS = {
         account: this.locator.locator(
             '//button[contains(.,"Welcome") or contains(.,"My Account")]'
         ),

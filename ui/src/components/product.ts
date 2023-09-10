@@ -2,7 +2,7 @@ import { Component } from '@Core/component';
 import type { Locator } from '@playwright/test';
 
 export class Product extends Component {
-    protected LOCATORS = {
+    private LOCATORS = {
         myPick: this.locator.locator('[data-testid="myPickWrapper"]'),
     };
 

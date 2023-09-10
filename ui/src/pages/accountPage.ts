@@ -3,9 +3,9 @@ import { MyDetails } from '@Components/myDetails';
 import { ChangeDetails } from '@Components/changeDetails';
 
 export class AccountPage extends Container {
-    protected LOCATORS = {
-        myDetailsButton: this.page.locator('//a[@data-id="myDetails"]'),
-        myDetails: this.page.locator('//div[@data-testid="section-myDetails"]'),
+    private LOCATORS = {
+        myDetailsButton: this.page.locator('[data-id="myDetails"]'),
+        myDetails: this.page.locator('[data-testid="section-myDetails"]'),
         changeDetails: this.page.locator('//div[contains(text(),"Feel free")]/..'),
     };
 

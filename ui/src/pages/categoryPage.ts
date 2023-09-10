@@ -5,7 +5,7 @@ import { Wishlist } from '@Components/wishlist';
 import { Header } from '@Components/header';
 
 export class CategoryPage extends Container {
-    protected LOCATORS = {
+    private LOCATORS = {
         product: this.page.locator('[data-test-name="product"]'),
         footer: this.page.locator('//footer[contains(., "Live Chat" )]'),
         wishlist: this.page.locator('//div[@class="mypicks-tab-container"]'),

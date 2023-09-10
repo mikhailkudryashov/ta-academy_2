@@ -2,7 +2,7 @@ import { Component } from '@Core/component';
 import type { Locator } from '@playwright/test';
 
 export class Registration extends Component {
-    protected LOCATORS = {
+    private LOCATORS = {
         email: this.locator.locator('//input[@type="email"]'),
         signUp: this.locator.locator('//button[@type="submit"]'),
         firstName: this.locator.locator('//input[@name="firstName"]'),

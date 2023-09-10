@@ -1,4 +1,3 @@
-import { HomePage } from '@Pages/homePage';
 import { test, expect } from '@Test';
 import { faker } from '@faker-js/faker';
 

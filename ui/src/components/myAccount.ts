@@ -2,7 +2,7 @@ import { Component } from '@Core/component';
 import type { Locator } from '@playwright/test';
 
 export class MyAccount extends Component {
-    protected LOCATORS = {
+    private LOCATORS = {
         createAccount: this.locator.locator('//span[contains(., "Create Account")]'),
         myAccount: this.locator.locator('//li[@data-testid="My Account_/customer/account"]/a'),
     };
