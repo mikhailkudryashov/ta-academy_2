@@ -1,31 +1,19 @@
-import { test, expect } from '@playwright/test';
-import { DataLayer } from '@Utils/dataLayer';
+import { test, expect } from '@Test';
 import { faker } from '@faker-js/faker';
 
 test.describe('check subscription event in Datalayer', () => {
-    test.beforeEach(async ({ page, baseURL }) => {
-        await page.context().addCookies([
-            {
-                name: 'OptanonAlertBoxClosed',
-                value: new Date().toISOString(),
-                url: baseURL,
-            },
-        ]);
-        await page.goto('/', { waitUntil: 'domcontentloaded' });
-    });
-    test('event should fire after click sign up button', async ({ page, baseURL }) => {
-        const dataLayer = new DataLayer(page);
+    test('event should fire after click sign up button', async ({ homePage, dataLayer }) => {
+        await homePage.open();
+
         const expectedEvent = {
             event: 'GeneralInteraction',
             eventCategory: 'Footer - D',
             eventAction: 'Newsletter Subscription',
             eventLabel: 'Success',
         };
-        const emailInput = page.locator('//footer//input');
-        await emailInput.fill(faker.internet.email());
 
-        const signUpButton = page.locator('//footer//button[contains(., "Sign Up" )]');
-        await signUpButton.click();
+        await homePage.Subscribe.insertEmail(faker.internet.email());
+        await homePage.Subscribe.singUp();
 
         const [event] = await dataLayer.waitForDataLayer({
             event: 'GeneralInteraction',

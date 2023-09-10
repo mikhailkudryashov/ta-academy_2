@@ -2,7 +2,7 @@ import { Component } from '@Core/component';
 import type { Locator } from '@playwright/test';
 
 export class FeaturedIn extends Component {
-    protected LOCATORS = {
+    private LOCATORS = {
         magazine: this.locator.locator('//li'),
     };
 

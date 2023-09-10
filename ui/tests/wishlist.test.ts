@@ -1,40 +1,31 @@
-import { test, expect } from '@playwright/test';
-import { DataLayer } from '@Utils/dataLayer';
+import { test, expect } from '@Test';
 
 test.describe('check product in wishlist', () => {
-    test('product in wishlist should be the same as picked', async ({ page, baseURL }) => {
-        await page.context().addCookies([
-            {
-                name: 'OptanonAlertBoxClosed',
-                value: new Date().toISOString(),
-                url: baseURL,
-            },
-        ]);
-        await page.goto('/', { waitUntil: 'domcontentloaded' });
-
-        const dataLayer = new DataLayer(page);
-        const expectedEvent = {
-            event: 'CategoryInteraction',
-            eventCategory: 'Category - D',
-            eventAction: 'Product',
-            eventLabel: 'Add to Wishlist',
-        };
-        const sunglasses = page.locator('//nav//a[contains(., "Sunglasses")]');
-        await sunglasses.click();
-        await page.waitForLoadState('load');
+    test('product in wishlist should be the same as picked', async ({
+        page,
+        baseURL,
+        categoryPage,
+        dataLayer,
+    }) => {
+        await categoryPage.open('sunglasses');
 
         await test.step('check url', () => {
             const url = page.url();
             expect(url).toBe(`${baseURL}sunglasses`);
         });
 
-        const product = page.locator('[data-test-name="product"]').first();
-        const productId = await product.getAttribute('data-test-id');
+        const expectedEvent = {
+            event: 'CategoryInteraction',
+            eventCategory: 'Category - D',
+            eventAction: 'Product',
+            eventLabel: 'Add to Wishlist',
+        };
 
-        const myPick = product.locator('[data-testid="myPickWrapper"]');
-        await myPick.click();
-        const myPickIsActive = await myPick.getAttribute('data-test-active');
-        expect(myPickIsActive).toBe('true');
+        const productId = await categoryPage.FirstProduct.getId();
+        await categoryPage.FirstProduct.pick();
+        const isMyPickActive = await categoryPage.FirstProduct.isMyPickActive();
+
+        expect(isMyPickActive).toBe('true');
 
         const [event] = await dataLayer.waitForDataLayer({
             event: 'CategoryInteraction',
@@ -44,13 +35,9 @@ test.describe('check product in wishlist', () => {
 
         expect(event).toStrictEqual(expectedEvent);
 
-        const wishlist = page.locator('[aria-label="View My Picks"]');
-        await wishlist.click();
-        const pickedItem = page.locator('[data-test-name="itemMyPicks"]');
-        const pickedItemId = await pickedItem
-            .locator('//div[@data-productid]')
-            .getAttribute('data-productid');
+        await categoryPage.Header.wishlistOpen();
 
+        const pickedItemId = await categoryPage.Wishlist.getFirstProductId();
         expect(pickedItemId).toBe(productId);
     });
 });
